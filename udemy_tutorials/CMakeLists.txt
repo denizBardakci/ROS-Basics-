@@ -144,6 +144,13 @@ target_link_libraries(publisher_node_cpp ${catkin_LIBRARIES})
 
 add_executable(subs_node_cpp src/subscriber.cpp)
 target_link_libraries(subs_node_cpp ${catkin_LIBRARIES})
+
+add_executable(rpm_pub_cpp src/rpm_pub.cpp)
+target_link_libraries(rpm_pub_cpp ${catkin_LIBRARIES})
+
+add_executable(speed_pub_cpp src/speed_pub.cpp)
+target_link_libraries(speed_pub_cpp ${catkin_LIBRARIES})
+
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
 ## target back to the shorter version for ease of user use

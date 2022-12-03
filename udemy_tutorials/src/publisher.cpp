@@ -9,27 +9,29 @@ int main(int argc, char **argv){
     ros::init(argc, argv, "first_publisher_node");
     ros::NodeHandle node_handle;
     
-    // 1) ros::Publisher turunden bir nesne yarattik ve buna ilk degerini bizim node_handle
-    // nesnesi icin cagrilmis advertise fonksiyonun geri donus degeri olan 
-    // Publisher ile verdik
-
-    // 2) advertise fonksiyonunu yazarken <> icine topic'e gecilecek mesajin turunu yaziyoruz
-    // 3) advertise'in argumanlari topic ismi, topic'de kac mesajin queue veri yapisinda publish edilene kadar tutulacagini
-    //      bildiriyoruz ama burda queue dolarsa ve pusblish edilmezse queue bosaltilip yeni mesajlar queue'ya ekleniyor
+    /* How to create a Publisher?
+    1) publisher object's type is ros::Publisher, and this object is initialized with the return value of advertise function
+    2) advertise function is a member function of ros::NodeHandle class. 
+       This function is specialized with the message type that we want to publish, in here it is std_msgs::String.
+    3) advertise function takes 2 parameters, 1st one is the topic name, i.e. where we will publish the message
+        2nd one is the queue size for messages. This size represents how many message can wait in the queue. 
+        if the messages in the queue cannot be published, then those messages will be discarded from the queue.
+    
+    */
 
     ros::Publisher first_publisher = node_handle.advertise<std_msgs::String>("publisher_topic", 20);
     
-    ros::Rate rate{10}; // rate object with value 10Hz, 10 messages per second yani
+    ros::Rate rate{10}; // rate object with value 10Hz, 10 messages per second 
     
     ROS_INFO("publisher node is started");
     int counter{};
-     std_msgs::String msg; // neden her loop'ta yeni nesne yarattiriyor anlamadim ama farkedersen duzelt bunu.
+    std_msgs::String msg; 
     while(ros::ok()){
        
         msg.data = "Hi this is a published message and its number is: " + std::to_string(counter) + "\n";
         first_publisher.publish(msg);
         counter++;
-        rate.sleep(); // while loop'unun bizim istedigimiz frekans hizinda calismasini sagliyor
+        rate.sleep(); // we make sure that the while loop operates at the desired frequency. by using sleep function, we put sleep while for a 1/10Hz time duration.
 
     }
 }

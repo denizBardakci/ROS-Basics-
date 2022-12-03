@@ -24,13 +24,14 @@ int main(int argc, char **argv)
     // subscribe method connects to the master to register interest in a given topic. 
     // The node will automatically be connected with publishers on this topic.
      
-     // 3 argument, 1) topic that we will subscribe to, 
-                //  2) queue size for the incoming message,  
-                //     so the queue will hold that amount of messages until messages are processed.
-                //  3) function pointer: this function will be called whenever a new message is recieved.
-                //     we can use function name directly here because implicitly, function names are converted to function pointers.
-                //     OR we can take address of function and pass it as argument as well, like &callBack.
-
+     /* How to create a Subscriber?
+      3 argument, 1) topic that we will subscribe to, 
+                  2) queue size for the incoming message,  
+                     so the queue will hold that amount of messages until messages are processed.
+                  3) function pointer: this function will be called whenever a new message is recieved.
+                     we can use function name directly here because implicitly, function names are converted to function pointers.
+                     OR we can take address of function and pass it as argument as well, like &callBack.
+     */
     ros::Subscriber my_sub_object = node_handle.subscribe("publisher_topic", 10, callBack);
     
     
