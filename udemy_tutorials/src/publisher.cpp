@@ -26,7 +26,7 @@ int main(int argc, char **argv){
      std_msgs::String msg; // neden her loop'ta yeni nesne yarattiriyor anlamadim ama farkedersen duzelt bunu.
     while(ros::ok()){
        
-        msg.data = "Hi this is a published message and its number is: " + std::to_string(counter);
+        msg.data = "Hi this is a published message and its number is: " + std::to_string(counter) + "\n";
         first_publisher.publish(msg);
         counter++;
         rate.sleep(); // while loop'unun bizim istedigimiz frekans hizinda calismasini sagliyor
