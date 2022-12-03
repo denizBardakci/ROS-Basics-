@@ -1,0 +1,13 @@
+<launch>
+
+     <!-- We can load a yaml file like this-->   
+     <!-- <rosparam command="load" file="$(find udemy_tutorials)/param.yaml"/> -->
+
+     <!--OR we can set the parameter like this -->
+     <param name = "wheel_radius" value = "0.24" type = "double" />
+
+     <!-- to call an executable, we write which package the node is located, we write the executable's name into type and we write the node's name where we gave it in ros::init() -->
+     <node pkg="udemy_tutorials" type="rpm_pub_cpp" name="rpm_pub_node"> </node>
+     <node pkg="udemy_tutorials" type="speed_pub_cpp" name="speed_calc_node"> </node>
+       
+</launch>
